@@ -1,100 +1,100 @@
 @extends('master')
 
 @section('content')
-    <h3 class="mx-5 text-success">Create Course</h3>
-    <div class="card card-body w-75 shadow mx-auto mt-5 mb-5">
-    <div class="container mt-4">
+  <h3 class="mx-5 text-success">Create Course</h3>
+  <div class="card card-body w-75 shadow mx-auto mt-5 mb-5">
+  <div class="container mt-4">
 
-    <form action="" method="POST">
-      @csrf
+  <form action="{{route('course.store')}}" method="POST" enctype="multipart/form-data">
+    @csrf
 
-      <!-- Course Info -->
-      <div class="mb-3">
-      <label class="form-label">Course Title</label>
-      <input type="text" name="title" class="form-control" required>
-      </div>
-      <div class="mb-3">
-      <label class="form-label">Description</label>
-      <textarea name="description" class="form-control" rows="3"></textarea>
-      </div>
-      <div class="mb-3">
-      <label class="form-label">Category</label>
-      <input type="text" name="category" class="form-control">
-      </div>
-
-      <!-- Modules Section -->
-      <h4>Modules</h4>
-      <div id="modules-wrapper"></div>
-
-      <button type="button" class="btn btn-outline-primary mt-2" onclick="addModule()">+ Add Module</button>
-
-      <div class="mt-4">
-      <button type="submit" class="btn btn-success">Create Course</button>
-      </div>
-    </form>
+    <!-- Course Info -->
+    <div class="mb-3">
+    <label class="form-label">Course Title</label>
+    <input type="text" name="title" class="form-control" required>
     </div>
+    <div class="mb-3">
+    <label class="form-label">Description</label>
+    <textarea name="description" class="form-control" rows="3"></textarea>
+    </div>
+    <div class="mb-3">
+    <label class="form-label">Category</label>
+    <input type="text" name="category" class="form-control">
     </div>
 
-    <!-- Hidden Templates -->
-    <template id="module-template">
-    <div class="card my-3 module-card">
-    <div class="card-body">
-      <div class="d-flex justify-content-between">
-      <h5>Module</h5>
-      <button type="button" class="btn btn-sm btn-danger" onclick="removeModule(this)">Remove Module</button>
-      </div>
+    <!-- Modules Section -->
+    <h4>Modules</h4>
+    <div id="modules-wrapper"></div>
 
-      <div class="mb-3">
-      <label class="form-label">Module Title</label>
-      <input type="text" name="modules[__INDEX__][title]" class="form-control" required>
-      </div>
+    <button type="button" class="btn btn-outline-primary mt-2" onclick="addModule()">+ Add Module</button>
 
-      <div class="content-wrapper"></div>
-      <button type="button" class="btn btn-sm btn-outline-secondary" onclick="addContent(this)">+ Add Content</button>
+    <div class="mt-4">
+    <button type="submit" class="btn btn-success">Create Course</button>
     </div>
+  </form>
+  </div>
+  </div>
+
+  <!-- Hidden Templates -->
+  <template id="module-template">
+  <div class="card my-3 module-card">
+  <div class="card-body">
+    <div class="d-flex justify-content-between">
+    <h5>Module</h5>
+    <button type="button" class="btn btn-sm btn-danger" onclick="removeModule(this)">Remove Module</button>
     </div>
-    </template>
 
-    <template id="content-template">
-    <div class="border rounded p-2 mb-2 content-block">
-    <div class="d-flex justify-content-between align-items-center">
-      <button type="button" class="btn-close" onclick="removeContent(this)"></button>
+    <div class="mb-3">
+    <label class="form-label">Module Title</label>
+    <input type="text" name="modules[__INDEX__][title]" class="form-control" required>
     </div>
-    <div class="row mt-2">
 
-      <div class="col-md-4">
-      <strong>Title</strong>
-      <input type="text" class="form-control" name="modules[__M_INDEX__][contents][__C_INDEX__][type]"
-      placeholder="Title">
-      </div>
+    <div class="content-wrapper"></div>
+    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="addContent(this)">+ Add Content</button>
+  </div>
+  </div>
+  </template>
 
-      <div class="col-md-4">
-      <strong>Video Type</strong>
-      <input type="text" class="form-control" name="modules[__M_INDEX__][contents][__C_INDEX__][content]"
-      placeholder="Video Type">
-      </div>
+  <template id="content-template">
+  <div class="border rounded p-2 mb-2 content-block">
+  <div class="d-flex justify-content-between align-items-center">
+    <button type="button" class="btn-close" onclick="removeContent(this)"></button>
+  </div>
+  <div class="row mt-2">
 
-
-      <div class="col-md-4">
-      <strong>Video Length</strong>
-      <input type="text" class="form-control" name="modules[__M_INDEX__][contents][__C_INDEX__][content]"
-      placeholder="Video Length">
-      </div>
-
-      <div class="col-md-6">
-        <strong>Video Url</strong>
-        <input type="text" class="form-control" name="modules[__M_INDEX__][contents][__C_INDEX__][content]"
-        placeholder="Video Url">
-      </div>
-
-      <div class="col-md-6">
-      <strong>Image</strong>
-      <input type="file" class="form-control" name="modules[__M_INDEX__][contents][__C_INDEX__][content]"
-      placeholder="Video Length">
-      </div>
+    <div class="col-md-4">
+    <strong>Title</strong>
+    <input type="text" class="form-control" name="modules[__M_INDEX__][contents][__C_INDEX__][type]"
+    placeholder="Title">
     </div>
+
+    <div class="col-md-4">
+    <strong>Video Type</strong>
+    <input type="text" class="form-control" name="modules[__M_INDEX__][contents][__C_INDEX__][content]"
+    placeholder="Video Type">
     </div>
-    </template>
+
+
+    <div class="col-md-4">
+    <strong>Video Length</strong>
+    <input type="text" class="form-control" name="modules[__M_INDEX__][contents][__C_INDEX__][content]"
+    placeholder="Video Length">
+    </div>
+
+    <div class="col-md-6">
+    <strong>Video Url</strong>
+    <input type="text" class="form-control" name="modules[__M_INDEX__][contents][__C_INDEX__][content]"
+    placeholder="Video Url">
+    </div>
+
+    <div class="col-md-6">
+    <strong>Image</strong>
+    <input type="file" class="form-control" name="modules[__M_INDEX__][contents][__C_INDEX__][content]"
+    placeholder="Video Length">
+    </div>
+  </div>
+  </div>
+  </template>
 @endsection
 
 
